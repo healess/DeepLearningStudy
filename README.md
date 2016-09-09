@@ -1,2 +1,6 @@
-# DeepLearningStudy
-DeepLearning Study using TensorFlow
+# Build
+npm install
+# Run
+npm start
+# Test
+npm test
