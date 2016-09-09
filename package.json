@@ -13,7 +13,7 @@
     "zeros": "^1.0.0"
   },
   "scripts": {
-    "test": "standard && cd src && budo --live --open test.js",
+    "test": "cd src && budo --live --open test.js",
     "start": "cd src && budo --live --open study_DL.js"
   },
   "license": "MIT"
