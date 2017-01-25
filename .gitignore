@@ -12,10 +12,11 @@ logs
 results
 
 npm-debug.log
-node_modules/*
+DrawNumber/node_modules/*
 *.DS_Store
 
 *.mp4
 *.jpg
 todo2
 todo
+ChatBot/__pycache__
