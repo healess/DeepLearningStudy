@@ -2,7 +2,6 @@
 # tensorflow 객체의 값을 미리 출력해 보는 util 함
 # http://pythonkim.tistory.com/62
 import tensorflow as tf
-
 import functools, operator
 
 def getLength(t):

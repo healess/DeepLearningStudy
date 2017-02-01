@@ -32,7 +32,7 @@ batch_size = 1  # one sample
 #    - X_split  : 결국 x_data와 동일한 배열이다. (tensor객체로 변환하는 용도)
 #    - rnn cell의 크기 : 입력 벡터의 크기(여기서는 h, e, l, l 4개)에 따라서 결정
 #    - output, state : input * state를 계산한 결과(output)과 변경된 상태(state)
-rnn_cell = tf.nn.rnn_cell.BasicRNNCell(rnn_size)
+rnn_cell = tf.nn.rnn_cell.BasicRNNCell(rnn_size)  # BASIC Cell use (GRU-GRUCell, LSTM-BasicLSTMCell,LSTMCell)
 state = tf.zeros([batch_size, rnn_cell.state_size])  # rnn_cell.state_size = 4
 X_split = tf.split(0, time_step_size, x_data)
 outputs, state = tf.nn.rnn(rnn_cell, X_split, state)
@@ -57,14 +57,14 @@ outputs, state = tf.nn.rnn(rnn_cell, X_split, state)
 # weights: 비율 (보통 1), list of 1D batch-sized float-Tensors of the same length as logits.
 
 logits = tf.reshape(tf.concat(1, outputs), [-1, rnn_size])
-print logits
+print (logits)
 #logits = outpus
 targets = tf.reshape(sample[1:], [-1])
 weights = tf.ones([time_step_size * batch_size]) # [ 1.  1.  1.  1.]
 
 # 3-1) logit에서 사용되는 2차원 배열을 생성하기 위해 필요한 변수
 #      outputs는 [4, 4] shape구조로 저장된 tensor 객체이다 (RNN 결과 값)
-print outputs # list
+print (outputs) # list
 # [<tf.Tensor 'RNN/BasicRNNCell/Tanh:0' shape=(1, 4) dtype=float32>, [ 0.45873451  0.13431551  0.2665318  -0.11387707]
 # <tf.Tensor 'RNN/BasicRNNCell_1/Tanh:0' shape=(1, 4) dtype=float32>,[0.21802776  -0.3968451  -0.12312219  0.39910132
 # <tf.Tensor 'RNN/BasicRNNCell_2/Tanh:0' shape=(1, 4) dtype=float32>,
@@ -85,13 +85,13 @@ print outputs # list
 #      [1, 16] ==> 4개의 열을 가지도록 변환하면 [4,4]가 생성된다. [-1, 4]
 #      여기서 -1은 4개의 열을 지정한 경우 필요한 행의 갯수를 자동으로 계산해 준다.
 #      [column, row] = [행, 열]
-print "reshape"
+print ("reshape")
 functions.showOperation(tf.reshape(tf.concat(1, outputs), [-1, rnn_size]))
 
 # 3-4) target을 logit과 동일한 크기의 1차원 배열로 생성해 준다
 #      reshape로 5개로 구성된 배열을 4개로 조정해 준다.
 #      hello --> ello로 변경
-print sample
+print (sample)
 functions.showOperation(tf.reshape(sample[1:], [-1])) # sample[1:] =[1, 2, 2, 3] => ello
 
 loss = tf.nn.seq2seq.sequence_loss_by_example([logits], [targets], [weights])

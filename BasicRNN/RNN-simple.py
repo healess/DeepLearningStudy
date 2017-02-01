@@ -53,8 +53,8 @@ with tf.Session() as sess:
         # print(sess.run(state))
         print(sess.run(cost))
 
-    merged = tf.merge_all_summaries()
-    writer = tf.train.SummaryWriter("/Users/skiper/work/00.Source/python/env_tensorflow/tensor_log", sess.graph)
+    merged = tf.summary.merge_all()
+    writer = tf.summary.FileWriter("/home/ictuser/Projects/DeepLearningStudy/BasicRNN/data/tensor_log", sess.graph)
 
 # 결과 출력
 # array([2, 3, 3, 3]), ['l', 'o', 'o', 'o']

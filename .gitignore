@@ -19,4 +19,6 @@ DrawNumber/node_modules/*
 *.jpg
 todo2
 todo
-ChatBot/__pycache__
+ChatBot/__pycache__/
+BasicRNN/__pycache__/
+BasicRNN/data/tensor_log/
